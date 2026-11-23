@@ -6,6 +6,10 @@
 [![Streamlit](https://img.shields.io/badge/Streamlit-Application-FF4B4B?logo=streamlit)](https://streamlit.io/)
 [![Pandas](https://img.shields.io/badge/Data-Pandas-150458?logo=pandas)](https://pandas.pydata.org/)
 
+### 🚀 [Open the Live Demo](https://cmm-inspection-project-afcf927szvcxpqxbxkbdoc.streamlit.app/)
+
+*Explore the application using the included synthetic inspection datasets. No installation required.*
+
 ---
 
 ## Table of Contents
@@ -39,7 +43,7 @@ The intention is straightforward: make CMM inspection data easier to work with, 
 
 ## 2. Live Demonstration
 
-**[Open CMM Quality Intelligence Platform](ADD_YOUR_STREAMLIT_URL_HERE)**
+**[Launch CMM Quality Intelligence Platform](https://cmm-inspection-project-afcf927szvcxpqxbxkbdoc.streamlit.app/)**
 
 The public application is hosted on Streamlit Community Cloud and uses synthetic inspection data.
 
@@ -114,7 +118,7 @@ Dimensional and geometric measurements are kept separate because they require di
 
 The demonstration accepts one or more Excel inspection workbooks:
 
-` .xlsx ` and ` .xlsm `
+`.xlsx` and `.xlsm`
 
 The current extraction engine is designed around the established inspection workbook structure. It reads the `Inspection Report` worksheet and extracts the following information where available:
 
@@ -180,7 +184,6 @@ cmm-quality-intelligence/
 ├── docs/
 ├── .streamlit/
 └── .github/
-    └── workflows/
 ```
 
 The `outputs/` directory is used for locally generated analysis results and is excluded from version control. The hosted dashboard calculates results at runtime and does not depend on pre-existing output files.
@@ -214,7 +217,7 @@ The application loads the included demonstration data automatically. There is no
 
 The public demonstration is deployed through **Streamlit Community Cloud** and connected to this GitHub repository.
 
-The application can be accessed directly through the live link in Section 2. Visitors do not need to install Python or download the repository.
+The application can be accessed directly through the [Live Demo](https://cmm-inspection-project-afcf927szvcxpqxbxkbdoc.streamlit.app/). Visitors do not need to install Python or download the repository.
 
 Changes pushed to the selected GitHub branch are reflected in the deployed application.
 
@@ -241,6 +244,7 @@ pytest -q
 The public application is a demonstration of the approach, not the internal AOI implementation.
 
 The extraction process must also be adapted and verified against the relevant CMM export formats before operational use.
+
 
 ---
 
