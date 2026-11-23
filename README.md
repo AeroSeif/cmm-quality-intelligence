@@ -240,13 +240,7 @@ pytest -q
 
 The public application is a demonstration of the approach, not the internal AOI implementation.
 
-Any deployment using actual production measurements must remain within an organisation-approved environment.
-
-This requires appropriate data access controls, audit trails, backups, controlled calculation configurations, software verification and validation, and formal engineering approval.
-
 The extraction process must also be adapted and verified against the relevant CMM export formats before operational use.
-
-Dashboard results should not be treated as an authorised product-release decision without the applicable approved procedures and acceptance requirements.
 
 ---
 
