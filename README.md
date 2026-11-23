@@ -84,4 +84,170 @@ These values must be verified against the applicable customer requirements and a
 
 This study uses measurements from **different manufactured components**.
 
-The objective is to understand how measured dimensions vary between parts, rather than assessing the repeat
+The objective is to understand how measured dimensions vary between parts, rather than assessing the repeatability of repeated measurements on one component.
+
+The application presents:
+
+- Mean and standard deviation for each characteristic.
+- Minimum and maximum measured values.
+- Observed dimensional spread.
+- Out-of-specification measurement counts.
+- Measurement distributions and boxplots.
+- A Pareto chart ranking characteristics by out-of-specification readings.
+
+Repeatability acceptance criteria are not applied to this study.
+
+Process capability analysis, including Cp and Cpk, is a separate development item requiring suitable process data and study conditions.
+
+### 3.3 Data Validation
+
+Before presenting the analysis, the application checks the extracted inspection data for issues such as:
+
+- Missing measurement values.
+- Invalid or inconsistent tolerance limits.
+- Differences between calculated and recorded measurement errors.
+- Inconsistencies in characteristic specifications across inspection reports.
+
+Dimensional and geometric measurements are kept separate because they require different analysis methods.
+
+## 4. Input Data and Extraction
+
+The demonstration accepts one or more Excel inspection workbooks:
+
+` .xlsx ` and ` .xlsm `
+
+The current extraction engine is designed around the established inspection workbook structure. It reads the `Inspection Report` worksheet and extracts the following information where available:
+
+| Measurement information | Extracted data |
+|---|---|
+| Identification | Characteristic identifier |
+| Dimensional | Nominal and actual dimensions |
+| Measurement error | Recorded dimensional error |
+| Specification limits | Upper and lower limits |
+| Dimensional result | Pass/fail status |
+| Geometric tolerance | Actual value and tolerance limit |
+| Geometric result | Pass/fail status |
+
+**Current limitation:** The extraction engine expects the defined workbook structure. It is not yet a universal parser for every CMM software export format.
+
+## 5. Demonstration Datasets
+
+Two separate synthetic datasets are included in the repository.
+
+| Dataset | Description |
+|---|---|
+| `Data/Repeatability/` | Repeated inspection runs of the same simulated component |
+| `Data/Part_Variation/` | Inspection reports representing different simulated components |
+
+The datasets are intended for testing and demonstrating the application. They do not represent actual AOI production measurements or customer inspection records.
+
+Synthetic data can be regenerated using `generate_synthetic_data.py`, with fixed seeds for reproducible tests or random seeds for new datasets.
+
+## 6. Technology and Repository Structure
+
+### Technology
+
+| Technology | Purpose |
+|---|---|
+| Python | Application logic and statistical calculations |
+| Streamlit | Interactive web application |
+| Pandas and NumPy | Inspection data processing and numerical calculations |
+| OpenPyXL | Excel workbook extraction and reporting |
+| Plotly | Interactive charts and visualisations |
+| Pytest | Automated testing |
+
+### Repository structure
+
+```text
+cmm-quality-intelligence/
+│
+├── app.py
+├── requirements.txt
+├── generate_synthetic_data.py
+├── run_analysis.py
+│
+├── core/
+│   ├── __init__.py
+│   ├── excel_reader.py
+│   └── repeatability.py
+│
+├── Data/
+│   ├── template.xlsx
+│   ├── Repeatability/
+│   └── Part_Variation/
+│
+├── tests/
+├── docs/
+├── .streamlit/
+└── .github/
+    └── workflows/
+```
+
+The `outputs/` directory is used for locally generated analysis results and is excluded from version control. The hosted dashboard calculates results at runtime and does not depend on pre-existing output files.
+
+## 7. Running Locally
+
+Python 3.11 is recommended for the current dependency configuration.
+
+Create a virtual environment and install the dependencies:
+
+```bash
+python -m venv .venv
+```
+
+**Windows PowerShell**
+
+```powershell
+.venv\Scripts\Activate.ps1
+```
+
+**Install dependencies and launch the application**
+
+```bash
+pip install -r requirements.txt
+streamlit run app.py
+```
+
+The application loads the included demonstration data automatically. There is no need to generate datasets or run the separate analysis script before opening the website.
+
+## 8. Deployment
+
+The public demonstration is deployed through **Streamlit Community Cloud** and connected to this GitHub repository.
+
+The application can be accessed directly through the live link in Section 2. Visitors do not need to install Python or download the repository.
+
+Changes pushed to the selected GitHub branch are reflected in the deployed application.
+
+For deployment instructions, refer to the [official Streamlit documentation](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/deploy).
+
+## 9. Testing
+
+The repository includes automated tests for the extraction and statistical calculation components.
+
+Install the development testing dependency:
+
+```bash
+pip install -r requirements-dev.txt
+```
+
+Run the tests:
+
+```bash
+pytest -q
+```
+
+## 10. Production Considerations
+
+The public application is a demonstration of the approach, not the internal AOI implementation.
+
+Any deployment using actual production measurements must remain within an organisation-approved environment.
+
+This requires appropriate data access controls, audit trails, backups, controlled calculation configurations, software verification and validation, and formal engineering approval.
+
+The extraction process must also be adapted and verified against the relevant CMM export formats before operational use.
+
+Dashboard results should not be treated as an authorised product-release decision without the applicable approved procedures and acceptance requirements.
+
+---
+
+**Developed from practical experience in aerospace overhaul manufacturing and dimensional inspection.**
