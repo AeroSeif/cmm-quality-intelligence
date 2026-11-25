@@ -37,7 +37,7 @@ def dark(fig, height=430):
 
 st.title("CMM Quality Intelligence Platform")
 st.caption("Dimensional metrology · Repeatability assessment · Manufacturing variation")
-st.info("Portfolio demonstration using synthetic inspection data. This prototype is not a certified measurement or product-acceptance system; approved customer and engineering requirements take precedence.")
+st.info("Portfolio demonstration using synthetic inspection data. This prototype is not a certified measurement or product-acceptance system! Its a demo of the actual system installed on the company's internal database")
 
 with st.sidebar:
     st.header("Study configuration")
